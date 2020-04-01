@@ -45,7 +45,6 @@ public class HttpClientUtil {
     public HttpResult doPost(String url, Map<String, Object> map) throws Exception {
         // 声明httpPost请求
         HttpPost httpPost = new HttpPost(url);
-
         // 判断map不为空
         if (map != null) {
             // 声明存放参数的List集合
@@ -55,14 +54,11 @@ public class HttpClientUtil {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 params.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
             }
-
             // 创建form表单对象
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(params, "UTF-8");
-
             // 把表单对象设置到httpPost中
             httpPost.setEntity(formEntity);
         }
-
         // 使用HttpClient发起请求，返回response
         CloseableHttpResponse response = null;
         try {
@@ -73,7 +69,6 @@ public class HttpClientUtil {
             httpResult.setBody("请求失败");
             return httpResult;
         }
-
         // 解析response封装返回对象httpResult
         HttpResult httpResult = new HttpResult();
         // 解析数据封装HttpResult
